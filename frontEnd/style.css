@@ -85,3 +85,15 @@ header #specialConditon{
     padding-left: 40px;
 }
 
+.search {
+    display:flex;
+    align-items: baseline;
+}
+
+#searchButton {
+    font-size:14px;
+    height: 5vh;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
