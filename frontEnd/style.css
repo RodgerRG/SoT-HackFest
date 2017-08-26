@@ -1,9 +1,14 @@
 body p{
   font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .topBanner{
   min-height: 15vh;
   min-width: 100vh;
+  margin: 0px;
+  padding:0px;
+  display: flex;
+  align-items: center;
 }
 .profilePic{
   width: 6%;
@@ -60,25 +65,23 @@ header #specialConditon{
 }
 
 .searchBar {
-    min-height: 10vh;
     min-width: 40vh;
-    display: flex;
-    align-items: center;
     margin-bottom: 12px;
-    margin-left: 80%;
-    margin-right: 20%;
     border: 1px solid #ddd;
+    align-items: center;
+}
+
+.searchBar .material-icons {
+    padding: 5px 10px;
+    position: absolute;
 }
 
 #userInput {
     background-position: 10px 12px;
     background-repeat: no-repeat; 
-    width: 100%; 
     font-size: 16px; 
-    padding: 12px 10px 12px 10px;
+    padding: 5px 10px;
     border: 0;
+    padding-left: 40px;
 }
 
-.material-icons {
-    padding-left:5%;
-}
