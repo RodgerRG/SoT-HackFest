@@ -7,7 +7,7 @@ import com.google.maps.model.PlacesSearchResult;
 public class LocationModel {
 	/**create an enum that stores the different types of locations that could be represented */
 	private static enum LocationType {
-		HOSPITAL, GP, POLICE, FIRESERVICE, DEFIB, USER, EMERGENCY, UNKNOWN, PHARMACY;
+		HOSPITAL, GP, POLICE, FIRESERVICE, UNKNOWN, PHARMACY, EMERGENCY;
 	}
 	
 	private String name;
