@@ -12,13 +12,34 @@
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap-css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
-  <body>
-    <section id = "profile">
+  <body onload = "getLocation()">
+    <header>
       <div class = "topBanner">
+        <!--<img class = "profilePic" src = "left.png">-->
+        <img class = "profilePic img-circle" src = "person.jpg">
+        <div class = "space">
+          <p> <b>Alec Baldwin</b> </p>
+        </div>
+        <div class = "age">
+          <p>45</p>
+        </div>
+        <div class = "blood space">
+          <p>AB</p>
+        </div>
+        <div class = "space2">
+          <div>
+            <p id = "conditionHeading"> Conditions </p>
+          </div>
+          <div>
+            <p id = "specialConditon"> high Blood pressure </p>
+          </div>
+        </div>
+        <a href ="index.html" class="btn btn-default space">Home</a>
+        <a href ="#" class="btn btn-default">Contact</a>
       </div>
-    </section>
-    <h1>My First Google Map</h1>
+    </header>
     <div class = "mapParent">
       <div id="googleMap"></div>
     </div>

@@ -1,21 +1,17 @@
-function myMap() {
-var mapProp= {
-    center:new google.maps.LatLng(51.508742,-0.120850),
-    zoom:5,
-};
-var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-}
-
-
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(myMap);
     } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
 
-function showPosition(position) {
-	position = {lat: position.coords.latitude, lng: position.coords.longitude};
-    demo.innerHTML = position.lng;
+function myMap(position) {
+var lat = position.coords.latitude;
+var lng = position.coords.longitude;
+var mapProp= {
+    center:new google.maps.LatLng(lat, lng),
+    zoom:18,
+};
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 }
