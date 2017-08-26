@@ -66,7 +66,6 @@ header #specialConditon{
 
 .searchBar {
     min-width: 40vh;
-    margin-bottom: 12px;
     border: 1px solid #ddd;
     align-items: center;
 }
@@ -76,12 +75,23 @@ header #specialConditon{
     position: absolute;
 }
 
+.search {
+  display: flex;
+  align-items: baseline;
+}
+
+#searchButton{
+  font-size: 14px;
+  height: 5vh;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
 #userInput {
     background-position: 10px 12px;
-    background-repeat: no-repeat; 
-    font-size: 16px; 
+    background-repeat: no-repeat;
+    font-size: 16px;
     padding: 5px 10px;
     border: 0;
     padding-left: 40px;
 }
-
