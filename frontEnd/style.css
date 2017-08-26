@@ -1,0 +1,14 @@
+.topBanner{
+  min-height: 20vh;
+  min-width: 100vh;
+}
+#googleMap{
+  width: 100%;
+  height: 100%;
+}
+.mapParent{
+  min-width: 100vh;
+  height:80vh;
+  padding: 0px;
+  margin: 0px;
+}
