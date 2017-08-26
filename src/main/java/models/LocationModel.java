@@ -7,7 +7,7 @@ import com.google.maps.model.PlacesSearchResult;
 public class LocationModel {
 	/**create an enum that stores the different types of locations that could be represented */
 	private static enum LocationType {
-		HOSPITAL, GP, POLICE, FIRESERVICE, DEFIB, USER, EMERGENCY, UNKNOWN;
+		HOSPITAL, GP, POLICE, FIRESERVICE, DEFIB, USER, EMERGENCY, UNKNOWN, PHARMACY;
 	}
 	
 	private String name;
@@ -17,7 +17,7 @@ public class LocationModel {
 	private int openingTime;
 	private int closingTime;
 	private float rating;
-	private LocationType type = LocationType.UNKNOWN;
+	private LocationType type;
 	
 	public LocationModel(PlacesSearchResult result) {
 		name = result.name;
@@ -38,6 +38,15 @@ public class LocationModel {
 					break;
 				case "police" :
 					type = LocationType.POLICE;
+					break;
+				case "doctor":
+					type = LocationType.GP;
+					break;
+				case "pharmacy" :
+					type = LocationType.PHARMACY;
+					break;
+				default :
+					type = LocationType.UNKNOWN;
 					break;
 			}
 		}
