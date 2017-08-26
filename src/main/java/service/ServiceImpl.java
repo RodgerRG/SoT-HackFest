@@ -2,11 +2,15 @@ package service;
 
 import static spark.Spark.get;
 
+import com.google.gson.Gson;
+
+import models.TestModel;
 import spark.Request;
 import spark.Response;
 
 public class ServiceImpl implements Service{
-	 
+	private Gson gson = new Gson(); 
+	
 	public ServiceImpl() {
 		get("/hello/:lat/:long", (req, res) -> testEndpoint(req));
 		get("/locations/:lat/:long", (req, res) -> getLocations(req, res));
@@ -15,7 +19,8 @@ public class ServiceImpl implements Service{
 	}
 	@Override
 	public String testEndpoint(Request req) {
-		return "You are at " + req.params(":lat") + " " + req.params(":long");
+		return gson.toJson(new TestModel());
+		//return "You are at " + req.params(":lat") + " " + req.params(":long");
 	}
 	@Override
 	public String getLocations(Request req, Response res) {
