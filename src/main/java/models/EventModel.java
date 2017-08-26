@@ -1,7 +1,7 @@
 package models;
 
 public class EventModel {
-	private static enum EventType {
+	public static enum EventType {
 		HEART, ASTHMA, ALLERGY;
 	}
 	

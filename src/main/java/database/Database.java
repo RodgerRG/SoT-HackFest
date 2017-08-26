@@ -2,23 +2,18 @@ package database;
 
 import java.util.Collection;
 
-public interface Database<T> {
-	public T getIndex();
+import models.EventModel;
+import models.EventModel.EventType;
+import models.UserModel;
+
+public interface Database {
 	
-	public void add(T object);
+	public UserModel getUser(int userID);
 	
-	public Collection<T> getAll();
+	public void addUser(UserModel user);
 	
-	public void remove(T object);
+	public EventModel getEvent(int userID, EventType type);
 	
-	public void remove(int index);
-	
-	public void addAt(T object, int index);
-	
-	public void removeAll();
-	
-	public boolean contains(T object);
-	
-	public int indexOf(T object);
+	public void addEvent(EventModel event);
 	
 }

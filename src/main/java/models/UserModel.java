@@ -1,7 +1,7 @@
 package models;
 
 public class UserModel {
-	private static enum UserType {
+	public static enum UserType {
 		GUEST, USER, ADMIN, SUPERUSER;
 	}
 	
