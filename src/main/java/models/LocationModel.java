@@ -1,9 +1,13 @@
 package models;
 
+import com.google.maps.internal.LatLngAdapter;
+import com.google.maps.model.LatLng;
+import com.google.maps.model.PlacesSearchResult;
+
 public class LocationModel {
 	/**create an enum that stores the different types of locations that could be represented */
 	private static enum LocationType {
-		HOSPITAL, GP, POLICE, FIRESERVICE, DEFIB, USER, EMERGENCY;
+		HOSPITAL, GP, POLICE, FIRESERVICE, DEFIB, USER, EMERGENCY, UNKNOWN;
 	}
 	
 	private String name;
@@ -12,11 +16,31 @@ public class LocationModel {
 	private String description;
 	private int openingTime;
 	private int closingTime;
-	private float business;
-	private LocationType type;
+	private float rating;
+	private LocationType type = LocationType.UNKNOWN;
 	
-	public LocationModel(String name, String description, double latitude, double longitude, int openingTime, int closingTime, float business, LocationType type) {
-		
+	public LocationModel(PlacesSearchResult result) {
+		name = result.name;
+		LatLng location = result.geometry.location;
+		latitude = location.lat;
+		longitude = location.lng;
+		description = result.formattedAddress;
+		openingTime = result.openingHours.periods[0].open.time.getHourOfDay();
+		closingTime = result.openingHours.periods[0].close.time.getHourOfDay();
+		rating = result.rating;
+		for(int i = 0; i < result.types.length; i++) {
+			switch (result.types[i]) {
+				case "hospital" :
+					type = LocationType.HOSPITAL;
+					break;
+				case "fire_station" :
+					type = LocationType.FIRESERVICE;
+					break;
+				case "police" :
+					type = LocationType.POLICE;
+					break;
+			}
+		}
 	}
 	
 	public LocationModel(String json) {
