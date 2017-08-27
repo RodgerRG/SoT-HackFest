@@ -9,6 +9,7 @@
     <title>HealthyIdea| Home</title>
     <link rel = "stylesheet" type = "text/css" href = "style.css">
     <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap-css/bootstrap.min.css">
@@ -20,29 +21,34 @@
       <div class = "topBanner">
         <!--<img class = "profilePic" src = "left.png">-->
         <img class = "profilePic img-circle" src = "person.jpg">
-        <div class = "space">
-          <p> <b>Alec Baldwin</b> </p>
+        <div class = "space2">
+          <p><b>Alec Baldwin</b></p>
         </div>
         <div class = "age">
           <p>45</p>
         </div>
-        <div class = "blood space">
+        <div class = "blood space2">
           <p>AB</p>
         </div>
         <div class = "space2">
           <div>
-            <p id = "conditionHeading"> Conditions </p>
+            <p id = "conditionHeading"> Conditions: </p>
           </div>
           <div>
             <p id = "specialConditon"> asthma </p>
           </div>
         </div>
         <a href ="index.html" class="btn btn-default space">Home</a>
-        <a href ="#" class="btn btn-default space">Contact</a>
+        <a href ="#" class="btn btn-default space2">Contact</a>
+        <div class ="search">
         <div class="searchBar">
           <i class="material-icons">search</i>
           <input type="text" id="userInput" onkeyup="searchFunction()" placeholder="Search" />
         </div>
+        <div>
+          <button id ="searchButton">Search</button>
+        </div>
+      </div>
       </div>
       </header>
     <div class = "mapParent">
