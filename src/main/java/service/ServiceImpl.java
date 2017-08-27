@@ -21,7 +21,7 @@ public class ServiceImpl implements Service{
 	public ServiceImpl() {
 		get("/hello/:lat/:long", (req, res) -> testEndpoint(req));
 		get("/locations/:lat/:long/:radius", (req, res) -> getLocations(req, res));
-		get("/searchLocations/:lat/:long/:query", (req, res) -> searchLocations(req, res));
+		get("/searchLocations/:lat/:long/:radius/:query", (req, res) -> searchLocations(req, res));
 		get("/emergency/:lat/:long/:userID", (req, res) -> registerEvent(req, res));
 	}
 	@Override
@@ -45,8 +45,17 @@ public class ServiceImpl implements Service{
 	}
 	@Override
 	public String searchLocations(Request req, Response res) {
-		// TODO Auto-generated method stub
-		return null;
+		GoogleInteracter google = new GoogleInteracter();
+		PlacesSearchResult[] results = new PlacesSearchResult[0];
+		
+		try {
+			results = google.getSearchResults(Double.parseDouble(req.params(":lat")), Double.parseDouble(req.params(":long")), Integer.parseInt(req.params(":radius")), req.params(":query"));
+		} catch (NumberFormatException | ApiException | InterruptedException | IOException e) {
+			return e.toString();
+		}
+		ArrayList<LocationModel> output = createLocationModels(results);
+		
+		return gson.toJson(output);
 	}
 	@Override
 	public String registerEvent(Request req, Response res) {
