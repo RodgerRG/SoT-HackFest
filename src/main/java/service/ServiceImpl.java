@@ -78,9 +78,8 @@ public class ServiceImpl implements Service{
 			newEvent = new EventModel(Double.parseDouble(req.params(":lat")), Double.parseDouble(req.params(":long")), Integer.parseInt(req.params(":userID")), type);
 		
 		//TODO add a call to the database to store the new event.	
-		this.update();
-		
-		return "Done";
+		return this.update();
+
 	}
 	
 	private String update() {
