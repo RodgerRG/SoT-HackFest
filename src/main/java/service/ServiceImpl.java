@@ -39,11 +39,8 @@ public class ServiceImpl implements Service{
 		} catch (NumberFormatException | ApiException | InterruptedException | IOException e) {
 			return e.toString();
 		}
+		ArrayList<LocationModel> output = createLocationModels(results);
 		
-		ArrayList<LocationModel> output = new ArrayList<>();
-		for(int i = 0; i < results.length; i++) {
-			output.add(new LocationModel(results[i]));
-		}
 		return gson.toJson(output);
 	}
 	@Override
@@ -55,6 +52,14 @@ public class ServiceImpl implements Service{
 	public String registerEvent(Request req, Response res) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private ArrayList<LocationModel> createLocationModels(PlacesSearchResult[] results) {
+		ArrayList<LocationModel> output = new ArrayList<>();
+		for(int i = 0; i < results.length; i++) {
+			output.add(new LocationModel(results[i]));
+		}
+		return output;
 	}
 
 }
