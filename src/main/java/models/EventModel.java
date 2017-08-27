@@ -2,7 +2,11 @@ package models;
 
 public class EventModel {
 	public static enum EventType {
+<<<<<<< HEAD
 		HEART, ASTHMA, ALLERGY, EMERGENCY;
+=======
+		HEART, ASTHMA, ALLERGY;
+>>>>>>> database
 	}
 	
 	private double latitude;
