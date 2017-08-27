@@ -10,19 +10,21 @@ import com.google.maps.errors.ApiException;
 import com.google.maps.model.PlacesSearchResult;
 
 import googleData.GoogleInteracter;
+import models.EventModel;
+import models.EventModel.EventType;
 import models.LocationModel;
-import models.TestModel;
 import spark.Request;
 import spark.Response;
 
 public class ServiceImpl implements Service{
 	private Gson gson = new Gson(); 
+	private EventModel newEvent;
 	
 	public ServiceImpl() {
 		get("/hello/:lat/:long", (req, res) -> testEndpoint(req));
 		get("/locations/:lat/:long/:radius", (req, res) -> getLocations(req, res));
 		get("/searchLocations/:lat/:long/:radius/:query", (req, res) -> searchLocations(req, res));
-		get("/emergency/:lat/:long/:userID", (req, res) -> registerEvent(req, res));
+		get("/emergency/:lat/:long/:userID/:eventType", (req, res) -> registerEvent(req, res));
 	}
 	@Override
 	public String testEndpoint(Request req) {
@@ -59,8 +61,30 @@ public class ServiceImpl implements Service{
 	}
 	@Override
 	public String registerEvent(Request req, Response res) {
-		// TODO Auto-generated method stub
-		return null;
+		EventType type;
+		switch(req.params(":eventType")) {
+		case "heart" :
+			type = EventType.HEART;
+			break;
+		case "asthma" :
+			type = EventType.ASTHMA;
+			break;
+		case "allergy" :
+			type = EventType.ALLERGY;
+			break;
+			default :
+				type = EventType.EMERGENCY;
+		}
+			newEvent = new EventModel(Double.parseDouble(req.params(":lat")), Double.parseDouble(req.params(":long")), Integer.parseInt(req.params(":userID")), type);
+		
+		//TODO add a call to the database to store the new event.	
+		return this.update();
+
+	}
+	
+	private String update() {
+		//TODO event is dispatched to all clients that a new event has occurred.
+		return gson.toJson(newEvent);
 	}
 	
 	private ArrayList<LocationModel> createLocationModels(PlacesSearchResult[] results) {

@@ -1,8 +1,8 @@
 package models;
 
 public class EventModel {
-	private static enum EventType {
-		HEART, ASTHMA, ALLERGY;
+	public static enum EventType {
+		HEART, ASTHMA, ALLERGY, EMERGENCY;
 	}
 	
 	private double latitude;

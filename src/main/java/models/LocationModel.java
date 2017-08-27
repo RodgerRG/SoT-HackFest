@@ -1,6 +1,5 @@
 package models;
 
-import com.google.maps.internal.LatLngAdapter;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.PlacesSearchResult;
 
