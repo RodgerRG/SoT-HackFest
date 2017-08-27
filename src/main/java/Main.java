@@ -1,5 +1,3 @@
-import static spark.Spark.*;
-
 import service.ServiceImpl;
 
 public class Main {

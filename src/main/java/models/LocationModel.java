@@ -54,6 +54,18 @@ public class LocationModel {
 					type = LocationType.PHARMACY;
 					break;
 				default :
+					if(result.name.contains("Hospital")) {
+						type = LocationType.HOSPITAL;
+						break;
+					}
+					if(result.name.contains("Clinic")) {
+						type = LocationType.GP;
+						break;
+					}
+					if(result.name.contains("Pharmacy")) {
+						type = LocationType.PHARMACY;
+						break;
+					}
 					type = LocationType.UNKNOWN;
 					break;
 			}
