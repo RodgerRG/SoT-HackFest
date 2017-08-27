@@ -20,8 +20,8 @@ public class ServiceImpl implements Service{
 	
 	public ServiceImpl() {
 		get("/hello/:lat/:long", (req, res) -> testEndpoint(req));
-		get("/locations/:lat/:long", (req, res) -> getLocations(req, res));
-		get("/searchLocations/:lat/:long/:query", (req, res) -> searchLocations(req, res));
+		get("/locations/:lat/:long/:radius", (req, res) -> getLocations(req, res));
+		get("/searchLocations/:lat/:long/:radius/:query", (req, res) -> searchLocations(req, res));
 		get("/emergency/:lat/:long/:userID", (req, res) -> registerEvent(req, res));
 	}
 	@Override
@@ -35,32 +35,40 @@ public class ServiceImpl implements Service{
 		GoogleInteracter google = new GoogleInteracter();
 		PlacesSearchResult[] results = new PlacesSearchResult[0];
 		try {
-			results = google.getLocations(Double.parseDouble(req.params(":lat")), Double.parseDouble(req.params(":long")), 4000);
-		} catch (NumberFormatException e) {
-			throw new RuntimeException();
-		} catch (ApiException e) {
-			throw new RuntimeException();
-		} catch (InterruptedException e) {
-			throw new RuntimeException();
-		} catch (IOException e) {
-			throw new RuntimeException();	
+			results = google.getLocations(Double.parseDouble(req.params(":lat")), Double.parseDouble(req.params(":long")), Integer.parseInt(req.params(":radius")));
+		} catch (NumberFormatException | ApiException | InterruptedException | IOException e) {
+			return e.toString();
 		}
+		ArrayList<LocationModel> output = createLocationModels(results);
 		
-		ArrayList<LocationModel> output = new ArrayList<>();
-		for(int i = 0; i < results.length; i++) {
-			output.add(new LocationModel(results[i]));
-		}
 		return gson.toJson(output);
 	}
 	@Override
 	public String searchLocations(Request req, Response res) {
-		// TODO Auto-generated method stub
-		return null;
+		GoogleInteracter google = new GoogleInteracter();
+		PlacesSearchResult[] results = new PlacesSearchResult[0];
+		
+		try {
+			results = google.getSearchResults(Double.parseDouble(req.params(":lat")), Double.parseDouble(req.params(":long")), Integer.parseInt(req.params(":radius")), req.params(":query"));
+		} catch (NumberFormatException | ApiException | InterruptedException | IOException e) {
+			return e.toString();
+		}
+		ArrayList<LocationModel> output = createLocationModels(results);
+		
+		return gson.toJson(output);
 	}
 	@Override
 	public String registerEvent(Request req, Response res) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private ArrayList<LocationModel> createLocationModels(PlacesSearchResult[] results) {
+		ArrayList<LocationModel> output = new ArrayList<>();
+		for(int i = 0; i < results.length; i++) {
+			output.add(new LocationModel(results[i]));
+		}
+		return output;
 	}
 
 }
