@@ -20,13 +20,21 @@ public class LocationModel {
 	private LocationType type;
 	
 	public LocationModel(PlacesSearchResult result) {
+		if(result.name != null)
 		name = result.name;
 		LatLng location = result.geometry.location;
 		latitude = location.lat;
 		longitude = location.lng;
 		description = result.formattedAddress;
-		openingTime = result.openingHours.periods[0].open.time.getHourOfDay();
-		closingTime = result.openingHours.periods[0].close.time.getHourOfDay();
+		if(result.openingHours != null) {
+			if(result.openingHours.periods != null) {
+				openingTime = result.openingHours.periods[0].open.time.getHourOfDay();
+				closingTime = result.openingHours.periods[0].close.time.getHourOfDay();
+			}
+		} else {
+			openingTime = 0;
+			closingTime = 0;
+		}
 		rating = result.rating;
 		for(int i = 0; i < result.types.length; i++) {
 			switch (result.types[i]) {
@@ -48,6 +56,9 @@ public class LocationModel {
 				default :
 					type = LocationType.UNKNOWN;
 					break;
+			}
+			if(type != LocationType.UNKNOWN && type != null) {
+				break;
 			}
 		}
 	}
