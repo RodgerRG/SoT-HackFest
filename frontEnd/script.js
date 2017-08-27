@@ -31,7 +31,10 @@ function loadLocation(position){
       });
       for (var index in data) {
           var location = data[index];
-          buildLocationMarker(location);
+          var inputText = document.getElementById('userInput').value.toUpperCase();
+          if (location.type === inputText || inputText === '') {
+              buildLocationMarker(location);
+          }
       }
       return;
     });
@@ -65,3 +68,4 @@ function buildLocationMarker(location){
         map:map
     });
 }
+
